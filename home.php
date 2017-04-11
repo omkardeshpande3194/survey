@@ -29,10 +29,12 @@
 <?php include 'phpincludes/nav1.php';  ?>
 <div class="container">
     <div class="row">
-        <div style="background:red;height:300px;" class="col-md-8">
-            <p><?php echo $row['fullname'];?></p>
-        </div>
-        <div style="background:yellow;height:300px;" class="col-md-4"></div>
+       <div style="height:300px;background:darkgrey;" class="col-md-12"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+       <div style="height:300px;background:black;position:relative;top=300;" class="col-md-3 col-md-push-9"></div>
     </div>
 </div>
 </body>

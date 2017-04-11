@@ -2,7 +2,7 @@
 echo '
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="abootstrap.css">
   <link rel="stylesheet" type="text/css" href="cssincludes/custom.css">
   <link rel="stylesheet" type="text/css" href="animate.css">
   <script type="text/javascript" src="script.js"></script>
