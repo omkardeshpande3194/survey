@@ -21,7 +21,6 @@
     else{
         $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
     }
-    
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +33,10 @@
 <body>
 <?php include 'phpincludes/nav1.php';  ?>
 <div class="container">
+   <h1>your profile</h1><br>
+    <p>name=<?php echo $row['fullname']?></p><br>
+    <p>email=<?php echo $row['email']?></p><br>
+    <a href="edit.php">edit profile</a>
     <form>
         <textarea rows="5" cols="60" name="textinput"></textarea>
         <input type="submit" name="submit">
