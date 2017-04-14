@@ -10,7 +10,7 @@
     {
         $user_email=$_POST['email'];
         $user_password=$_POST['password'];
-        $query="SELECT * FROM userlist WHERE email='$user_email'and password='$user_password'";
+        $query="SELECT * FROM userlist WHERE email='$user_email'and password='$user_password' and verified=1 ";
         $result = mysqli_query($con,$query);
         if(!$result)
         {

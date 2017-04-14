@@ -21,8 +21,20 @@
             $data[$i]['email']=$row['email'];
             $i++;
         } 
-        function verify($name){
-            echo "success";
+        function query($name){
+            // Create connection
+            $conn = new mysqli("localhost","root","","login");
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            } 
+
+            $sql = "UPDATE userlist SET verified=1 WHERE fullname='$name'";
+
+            if ($conn->query($sql) === TRUE) {
+                echo $name."verified"."<br>";
+            } else {
+                echo "Error updating record: " . $conn->error;
+            }
         }
         
         
@@ -31,20 +43,22 @@
 <html>
 <?php
     
-    echo "<form action='' method='post'>";
+    echo "<form action='' method='get'>";
     for($j=1;$j<$i;$j++)
     {
-        echo $data[$j]['name']."<input type='checkbox' name='".$data[$j]['name']."'>"."<br>";
+        echo $data[$j]['name']."<input type='checkbox' name='".$j."' value='accept'>"."<br>";
     }
     echo "<input type='submit' name='submit'>"."<br>";
     echo "</form>";
-    if(isset($_POST['submit']))
+    $name="name";
+    if(isset($_GET['submit']))
     {
         for($j=1;$j<$i;$j++)
-        {
-                if(isset($_POST['$data[$j]["name"]']))
+        {     
+                if(isset($_GET[$j]) && $_GET[$j]=="accept")
                 {
-                    echo "success";
+                    $x=$data[$j]['name'];
+                    query($x);
                 }
         }
     }
