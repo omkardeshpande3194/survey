@@ -5,9 +5,10 @@
       {
       echo "Failed to connect to MySQL: " . mysqli_connect_error();
       }
+    
     session_start();
     
-    if(isset($_SESSION['user_email'])){
+    if(!isset($_SESSION['username'])){
         die('You cannot directly access this page!');
     }
 
