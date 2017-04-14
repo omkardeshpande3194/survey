@@ -1,9 +1,9 @@
 <?php
 session_start();
-// Destroying All Sessions
 $logout_check=0;
 if(isset($_POST['submit']))
-{
+{   
+    unset($_SESSION['username']);  
     if(session_destroy())
     {
        $logout_check=1;

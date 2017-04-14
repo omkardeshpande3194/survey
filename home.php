@@ -1,10 +1,16 @@
-<?php
+
+   <?php
     $con = mysqli_connect("localhost","root","","login");
     if (mysqli_connect_errno())
       {
       echo "Failed to connect to MySQL: " . mysqli_connect_error();
       }
     session_start();
+    
+    if(isset($_SESSION['user_email'])){
+        die('You cannot directly access this page!');
+    }
+    
     $user_email=$_SESSION['user_email'];
     $query="SELECT * FROM userlist where email='$user_email'";
     $res=mysqli_query($con,$query);

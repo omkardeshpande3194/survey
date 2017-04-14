@@ -6,6 +6,11 @@
       echo "Failed to connect to MySQL: " . mysqli_connect_error();
       }
     session_start();
+    
+    if(isset($_SESSION['user_email'])){
+        die('You cannot directly access this page!');
+    }
+
         
         $query="SELECT * FROM userlist WHERE verified=0 ";
         $result = mysqli_query($con,$query);

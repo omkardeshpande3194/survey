@@ -1,4 +1,5 @@
 <?php
+if(count(get_included_files()) ==1) exit("Direct access not permitted.");
 echo ' <nav class="navbar navbar-default nav-custom animated fadeIn" >
   <div class="container-fluid">
     <div class="navbar-header">

@@ -1,9 +1,14 @@
 <?php
 session_start();
-// Destroying All Sessions
+ 
+    if(isset($_SESSION['user_email'])){
+        die('You cannot directly access this page!');
+    }
+
 $logout_check=0;
 if(isset($_POST['submit']))
 {
+    unset($_SESSION['user_email']);  
     if(session_destroy())
     {
        $logout_check=1;
