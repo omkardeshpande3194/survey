@@ -32,10 +32,6 @@
        <div style="height:300px;background:darkgrey;" class="col-md-12"></div>
     </div>
 </div>
-<div class="container">
-    <div class="row">
-       <div style="height:300px;background:black;position:relative;top=300;" class="col-md-3 col-md-push-9"></div>
-    </div>
-</div>
+<a href="fileupload.php">file upload link</a>
 </body>
 </html>
