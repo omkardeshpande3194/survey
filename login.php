@@ -20,6 +20,7 @@
         if($rows==1)
         {
             $_SESSION['user_email']=$user_email;
+            echo $_SESSION['user_email'];
             header("Location: home.php");
         }
         else{

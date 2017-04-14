@@ -6,8 +6,8 @@
       echo "Failed to connect to MySQL: " . mysqli_connect_error();
       }
     session_start();
-    
-    if(isset($_SESSION['user_email'])){
+    if(!isset($_SESSION['user_email']))
+    {
         die('You cannot directly access this page!');
     }
     
@@ -34,10 +34,11 @@
 <body>
 <?php include 'phpincludes/nav1.php';  ?>
 <div class="container">
-    <div class="row">
-       <div style="height:300px;background:darkgrey;" class="col-md-12"></div>
-    </div>
+    <form>
+        <textarea rows="5" cols="60" name="textinput"></textarea>
+        <input type="submit" name="submit">
+    </form>
 </div>
-<a href="fileupload.php">file upload link</a>
+
 </body>
 </html>

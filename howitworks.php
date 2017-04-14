@@ -1,9 +1,5 @@
 <?php
 session_start();
-    
-    if(isset($_SESSION['user_email'])){
-        die('You cannot directly access this page!');
-    }
 ?>
 <!DOCTYPE html>
 <html>
