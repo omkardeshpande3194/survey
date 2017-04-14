@@ -13,21 +13,41 @@
         {
             echo "failed";
         }
-        
+        $i=1;
         while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
         { 
-            echo "<form action='' method='post' >".
-                "<label>".$row['fullname']."<label>"."<input type='button' name='".$row['fullname']." value='accept' ></input>"."</br>"
-                ."</form>"
-                ;
+            $data[$i]['id']=$row['key'];
+            $data[$i]['name']=$row['fullname'];
+            $data[$i]['email']=$row['email'];
+            $i++;
+        } 
+        function verify($name){
+            echo "success";
         }
-
-        mysqli_free_result($result);
-
+        
         
 ?>
 
 <html>
-   
+<?php
+    
+    echo "<form action='' method='post'>";
+    for($j=1;$j<$i;$j++)
+    {
+        echo $data[$j]['name']."<input type='checkbox' name='".$data[$j]['name']."'>"."<br>";
+    }
+    echo "<input type='submit' name='submit'>"."<br>";
+    echo "</form>";
+    if(isset($_POST['submit']))
+    {
+        for($j=1;$j<$i;$j++)
+        {
+                if(isset($_POST['$data[$j]["name"]']))
+                {
+                    echo "success";
+                }
+        }
+    }
+?>
     
 </html>
