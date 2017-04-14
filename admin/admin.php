@@ -41,6 +41,7 @@
 ?>
 
 <html>
+<a href="admin-logout.php">logout</a>
 <?php
     
     echo "<form action='' method='get'>";
