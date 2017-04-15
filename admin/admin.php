@@ -1,5 +1,5 @@
 <?php
-    $invalid=0;
+    
     $con = mysqli_connect("localhost","root","","login");
     if (mysqli_connect_errno())
       {

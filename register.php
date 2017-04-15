@@ -23,18 +23,26 @@
             $user_email=$_POST['email'];
             $user_password=$_POST['password'];
             echo $user_fullname." ".$user_email." ".$user_password;
-
-            //-----------------------insert to db-----------------------------//
-            $sql = "INSERT INTO userlist (fullname,email,password)
-            VALUES ('$user_fullname', '$user_email', '$user_password')";
-
-            if (mysqli_query($conn, $sql)) 
+            //----------check if user already exists-------------------------//
+            $query="SELECT * FROM userlist WHERE email='$user_email'";
+            $result = mysqli_query($con,$query);
+            if($result)
             {
-                $final=1;
-            } 
-            else 
-            {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                echo "username already exists";
+            }
+            else{
+                //-----------------------insert to db-----------------------------//
+                $sql = "INSERT INTO userlist (fullname,email,password)
+                VALUES ('$user_fullname', '$user_email', '$user_password')";
+
+                if (mysqli_query($conn, $sql)) 
+                {
+                    $final=1;
+                } 
+                else 
+                {
+                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                }
             }
     }
     mysqli_close($conn);
