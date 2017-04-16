@@ -7,6 +7,7 @@
     $db_password = "";
     $dbname = "login";
     $final=0;
+    $user_exists=0;
 
     $conn = mysqli_connect($servername, $db_username, $db_password, $dbname);
     if (!$conn) {
@@ -22,13 +23,13 @@
             $user_fullname=$_POST['full_name'];
             $user_email=$_POST['email'];
             $user_password=$_POST['password'];
-            echo $user_fullname." ".$user_email." ".$user_password;
+            
             //----------check if user already exists-------------------------//
             $query="SELECT * FROM userlist WHERE email='$user_email'";
-            $result = mysqli_query($con,$query);
+            $result = mysqli_query($conn,$query);
             if($result)
             {
-                echo "username already exists";
+                $user_exist=1;
             }
             else{
                 //-----------------------insert to db-----------------------------//
@@ -84,6 +85,11 @@
         <input type="password" placeholder="enter password" name="password"><br>
         <input style="width:25%" type="submit" name="submit">
     </form>
+    <?php
+    if($user_exist==1){
+        echo "user with this email address already exists";
+    }
+    ?>
 
 </body>
 

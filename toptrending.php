@@ -38,9 +38,11 @@
 <?php include 'phpincludes/nav1.php'; ?>
 
 <?php
-   
+        echo "<form action='' method='post'>";
         for($j=1;$j<$i;$j++)
         {   $username=$q[$j]['username'];
+            $username_agree=$username."agree";
+            $username_disagree=$username."disagree";
             $query="SELECT * FROM userlist where fullname='$username' ";
             $res=mysqli_query($con,$query);
             if(!$res)
@@ -50,8 +52,14 @@
             else{
                 $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
             }
-            echo $q[$j]['username'].":".$q[$j]['question'],"<br>";
-        }  
+            
+            echo $username.":".$q[$j]['question'].
+                "<input type=button  value='agree' name='<?php echo $username_agree?>'></input>".
+                "<input type=button  value='disagree' name='<?php echo $username_disagree?>'></input>".
+                "</br>"."</br>";
+           
+        } 
+        echo "</form>";
 ?>
 
 <?php include 'phpincludes/footer.php';  ?> 
