@@ -76,7 +76,7 @@
             $sql = "UPDATE userlist SET verified=0 WHERE fullname='$name'";
 
             if ($conn->query($sql) === TRUE) {
-                echo $name."verified"."<br>";
+                echo $name."blocked"."<br>";
             } else {
                 echo "Error updating record: " . $conn->error;
             }
@@ -89,23 +89,50 @@
 <html>
 <head>
 	<title></title>
-	<?php include '../phpincludes/header.php'; ?>
-	
+	<link rel="stylesheet" href="../abootstrap.css">
+	<style>
+        body{
+            text-align: center;
+            background: #f1f8e9;
+        }
+        input{
+            float: right;
+        }
+        .form-elem{
+            padding: 10px;
+            text-align: left;
+            background: #8bc34a;
+            margin:2px;
+            border-radius: 3px;
+            box-shadow: 0px 0px 5px rgba(0,0,0,0.56);
+        }
+        .form-container{
+            padding: 20px;
+        }
+        form{
+            border: 1px solid;
+            border-radius: 4px;
+            padding: 10px;
+            box-shadow: 0px 0px 15px black;
+        }
+    </style>
 </head>
 <body>
+
 <a href="admin-logout.php">logout</a>
 <div class="container">
     <div class="row">
-       //---------------------non verified form----------------------------------
-        <div class="col-md-6">
+       <!---------------------non verified form---------------------------------->
+        <div class="col-md-6 form-container">
         <?php
 
             echo "<form action='' method='post'>";
+            echo "<h1>non verified users</h1>";
             for($j_nv=1;$j_nv<$i_nv;$j_nv++)
             {   
-                echo $data_nv[$j_nv]['name']."<input type='checkbox' name='".$j_nv."' value='accept'>"."<br>";
+                echo "<div class='form-elem'>".$data_nv[$j_nv]['name']."<input type='checkbox' name='".$j_nv."' value='accept'>"."</input></div><br>";
             }
-            echo "<input type='submit' name='submit'>"."<br>";
+            echo "<input style='margin:auto;width:50%;float:none;' type='submit' name='submit' value='verify'>"."<br>";
             echo "</form>";
             $name="name";
             if(isset($_POST['submit']))
@@ -121,24 +148,29 @@
             }
         ?>
         </div>
-        //--------------------------verified form-----------------------------------------
-        <div class="col-md-6">
+        <!--------------------------verified form----------------------------------------->
+        <div class="col-md-6 form-container">
+           
             <?php
-
-            echo "<form action='' method='get'>";
+            
+            echo "<form action='' method='post'>";
+            echo "<h1>verified users</h1>";
             for($j_v=1;$j_v<$i_v;$j_v++)
-            {  
-                echo $data_v[$j_v]['name']."<input type='checkbox' name='".$j_v."' value='accept'>"."<br>";
+            {  $j_vname=$j_v."_v";
+                echo "<div class='form-elem'>".$data_v[$j_v]['name']."<input type='checkbox' name='".$j_vname."' value='accept'>"."</input></div><br>";
             }
-            echo "<input type='submit' name='submit'>"."<br>";
+            echo "<input style='margin:auto;width:50%;float:none;' type='submit' name='submit' value='block'>"."<br>";
             echo "</form>";
             $name="name";
-            if(isset($_GET['submit']))
-            {
+            
+            if(isset($_POST['submit']))
+            {   
+            
                 for($j_v=1;$j_v<$i_v;$j_v++)
-                {     
-                        if(isset($_GET[$j_v]) && $_GET[$j_v]=="accept")
-                        {
+                {       $j_vname=$j_v."_v";
+                        
+                        if(isset($_POST[$j_vname]) && $_POST[$j_vname]=="accept")
+                        {   
                             $x=$data_v[$j_v]['name'];
                             query_block($x);
                         }
